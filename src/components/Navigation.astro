@@ -79,10 +79,12 @@ import { Icon } from "astro-icon/components";
           const left = rect.left - parentRect.left;
           const top = rect.top - parentRect.top;
 
-          navPill.style.width = `${rect.width}px`;
-          navPill.style.height = `${rect.height}px`;
-          navPill.style.transform = `translate(${left}px, ${top}px)`;
-          navPill.style.opacity = "1";
+          requestAnimationFrame(() => {
+            navPill.style.width = `${rect.width}px`;
+            navPill.style.height = `${rect.height}px`;
+            navPill.style.transform = `translate(${left}px, ${top}px)`;
+            navPill.style.opacity = "1";
+          });
         });
       });
 
