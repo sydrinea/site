@@ -3,7 +3,6 @@ import { allImages, transformImage } from "../../image";
 import { Icon } from "astro-icon/components";
 import Base from "../../layouts/Base.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import Image from "astro/components/Image.astro";
 
 const DEFAULT_WIDTH = 1920;
 const DEFAULT_HEIGHT = 1080;
@@ -49,7 +48,7 @@ const next = Math.min(images.length - 1, index + 1);
   </div>
 
   <div class="flex flex-col gap-6">
-    <Image
+    <img
       class="mx-auto max-h-[80vh] object-contain"
       src={quarterPercent}
       alt={name}
