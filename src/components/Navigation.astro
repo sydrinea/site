@@ -46,13 +46,22 @@ import { Icon } from "astro-icon/components";
   </nav>
 </header>
 
+<style>
+  @media (hover: none) {
+    #nav-pill {
+      display: none;
+    }
+  }
+</style>
+
 <script data-astro-rerun>
   {
     const navLinks = document.querySelectorAll(".nav-link");
     const navPill = document.getElementById("nav-pill");
     const nav = document.querySelector("nav");
 
-    if (navPill && nav) {
+    // Only enable pill animations on devices that support hover
+    if (navPill && nav && window.matchMedia("(hover: hover)").matches) {
       // Reset pill styles on init: ensure it's hidden initially
       navPill.style.opacity = "0";
 
