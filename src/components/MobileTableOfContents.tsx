@@ -14,7 +14,11 @@ export default function MobileTableOfContents({ headings }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
-  const tocHeadings = headings.filter((h) => h.depth <= 3);
+  const tocHeadings = headings
+    .filter((h) => h.depth <= 3)
+    .filter((h) => h.slug !== "footnote-label");
+
+  if (tocHeadings.length === 0) return <></>;
 
   return (
     <nav
