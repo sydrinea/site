@@ -1,70 +1,87 @@
 ---
-import profilePicture from "../images/profilePicture.jpeg";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import profilePicture from "../images/profilePicture.jpeg";
 ---
 
-<header class="px-5">
-  <nav class="my-5 flex flex-wrap justify-between font-mono text-xl relative">
-    <div class="flex flex-row space-x-4 items-center">
-      <span>
-        <Image
-          class="inline w-8 h-8 rounded-full my-auto hover:animate-spin"
-          width="64"
-          height="64"
-          src={profilePicture}
-          alt="Sydney Newmark profile shot"
-        />
-      </span>
-      <p class="hidden md:block text-subtext0">sydneyn.dev</p>
+<header class="sticky top-4 z-50 mb-10 flex justify-center px-5">
+  <nav
+    class="relative flex items-center gap-2 rounded-full border border-white/10 bg-mantle/50 p-2 backdrop-blur-md"
+  >
+    <div
+      id="nav-pill"
+      class="absolute left-0 top-0 -z-10 h-0 w-0 rounded-full bg-surface1/30 opacity-0 transition-all duration-300 ease-out"
+    >
     </div>
-    <ul class="flex flex-row space-x-3 items-center">
-      <li class="link-wrapper">
-        <a class="navbar-link ignored-link" href="/" aria-label="Home">
-          <p class="hidden sm:block">home</p>
-          <Icon name="mdi:home" class="navbar-icon" />
-        </a>
-      </li>
-      <li class="link-wrapper">
-        <a class="navbar-link ignored-link" href="/in/blog" aria-label="Blog">
-          <p class="hidden sm:block">blog</p>
-          <Icon name="mdi:pencil-box-multiple-outline" class="navbar-icon" />
-        </a>
-      </li>
-      <li class="link-wrapper">
-        <a
-          class="navbar-link ignored-link"
-          href="/projects"
-          aria-label="Projects"
-        >
-          <p class="hidden sm:block">projects</p>
-          <Icon name="carbon:tool-box" class="navbar-icon" />
-        </a>
-      </li>
-      <li class="link-wrapper">
-        <a
-          class="navbar-link ignored-link"
-          href="/gallery"
-          aria-label="Gallery"
-        >
-          <p class="hidden sm:block">gallery</p>
-          <Icon name="carbon:image-copy" class="navbar-icon" />
-        </a>
-      </li>
-    </ul>
+    <a
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 no-underline transition-colors hover:text-text"
+      href="/"
+      aria-label="Home"
+    >
+      <Icon name="mdi:home" class="h-5 w-5 sm:hidden" />
+      <span class="hidden sm:block">home</span>
+    </a>
+    <a
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 no-underline transition-colors hover:text-text"
+      href="/in/blog"
+      aria-label="Blog"
+    >
+      <Icon name="mdi:pencil-box-multiple-outline" class="h-5 w-5 sm:hidden" />
+      <span class="hidden sm:block">blog</span>
+    </a>
+    <a
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 no-underline transition-colors hover:text-text"
+      href="/projects"
+      aria-label="Projects"
+    >
+      <Icon name="carbon:tool-box" class="h-5 w-5 sm:hidden" />
+      <span class="hidden sm:block">projects</span>
+    </a>
+    <a
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 no-underline transition-colors hover:text-text"
+      href="/gallery"
+      aria-label="Gallery"
+    >
+      <Icon name="carbon:image-copy" class="h-5 w-5 sm:hidden" />
+      <span class="hidden sm:block">gallery</span>
+    </a>
   </nav>
 </header>
 
-<style>
-  .link-wrapper {
-    @apply bg-mantle rounded-md px-1 hover:bg-crust;
-  }
+<script data-astro-rerun>
+  {
+    const navLinks = document.querySelectorAll(".nav-link");
+    const navPill = document.getElementById("nav-pill");
+    const nav = document.querySelector("nav");
 
-  .navbar-link {
-    @apply text-subtext1;
-  }
+    if (navPill && nav) {
+      // Reset pill styles on init: ensure it's hidden initially
+      navPill.style.opacity = "0";
 
-  .navbar-icon {
-    @apply p-1.5 w-8 h-8 rounded-md sm:hidden;
+      navLinks.forEach((link) => {
+        link.addEventListener("mouseenter", (e) => {
+          const target = e.currentTarget;
+          const rect = target.getBoundingClientRect();
+          // Ensure parent matches the relative container
+          const parent = target.closest("nav");
+          if (!parent) return;
+
+          const parentRect = parent.getBoundingClientRect();
+
+          // Calculate position relative to container
+          const left = rect.left - parentRect.left;
+          const top = rect.top - parentRect.top;
+
+          navPill.style.width = `${rect.width}px`;
+          navPill.style.height = `${rect.height}px`;
+          navPill.style.transform = `translate(${left}px, ${top}px)`;
+          navPill.style.opacity = "1";
+        });
+      });
+
+      nav.addEventListener("mouseleave", () => {
+        navPill.style.opacity = "0";
+      });
+    }
   }
-</style>
+</script>

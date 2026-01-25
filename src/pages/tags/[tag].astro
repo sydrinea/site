@@ -29,6 +29,8 @@ export async function getStaticPaths() {
   });
 }
 
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+
 const { tag } = Astro.params;
 const { nodes } = Astro.props;
 const sortedNodes = nodes
@@ -38,11 +40,9 @@ const sortedNodes = nodes
 
 <Base pageTitle={`#${tag}`} description={`Nodes tagged with #${tag}`}>
   <div>
-    <p class="text-subtext1">
-      <a href="/tags">Tags</a>
-      <Icon name="carbon:chevron-right" class="inline m-1 text-overlay0" />
-      {tag}
-    </p>
+    <Breadcrumbs
+      items={[{ label: "Tags", href: "/tags" }, { label: `#${tag}` }]}
+    />
   </div>
   <ul class="space-y-3 mt-5">
     {

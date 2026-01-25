@@ -14,21 +14,21 @@ const DEFAULT_WIDTH = 1920;
 const DEFAULT_HEIGHT = 1080;
 ---
 
-<div class="m-1">
+<div class="mb-4 break-inside-avoid">
   <a
     href={`/gallery/${id}`}
-    class="inline-block bg-crust text-sm border-2 border-mantle hover:border-lavender"
+    class="block p-1 rounded-xl transition-all duration-300 ease-out border bg-base border-surface0 hover:border-overlay0 hover:bg-surface0/30 hover:-translate-y-1 hover:shadow-lg ignored-link"
   >
     <img
-      class=""
+      class="rounded-lg w-full h-auto"
       src={transformImage(name, {
-        width: (width || DEFAULT_WIDTH) * 0.04,
-        height: (height || DEFAULT_HEIGHT) * 0.04,
+        width: (width || DEFAULT_WIDTH) * 0.1,
+        height: (height || DEFAULT_HEIGHT) * 0.1,
         quality: 100,
       })}
       alt={name}
-      width={width}
-      height={height}
+      width={(width || DEFAULT_WIDTH) * 0.1}
+      height={(height || DEFAULT_HEIGHT) * 0.1}
     />
   </a>
 </div>

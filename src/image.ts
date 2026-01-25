@@ -30,7 +30,7 @@ const getImageKeys = async () => {
     await S3.send(
       new ListObjectsV2Command({
         Bucket: import.meta.env.R2_BUCKET_NAME,
-      })
+      }),
     )
   )
     .Contents!!.filter((object) => object.Key!!.startsWith("gallery"))
@@ -49,7 +49,7 @@ const getAllImages = async () => {
           new GetObjectCommand({
             Bucket: import.meta.env.R2_BUCKET_NAME,
             Key: key,
-          })
+          }),
         )
       ).Body!!.transformToByteArray(),
     });
@@ -57,15 +57,21 @@ const getAllImages = async () => {
   return images.map((image) => {
     const buf = Buffer.from(image.blob);
     const exifData = ExifReader.load(buf);
-    const parsedDate = exifData["DateTime"] ? parse(
-      exifData["DateTime"]?.description ?? "1970:01:01 00:00:00", "YYYY:MM:DD HH:mm:ss") : DateTime.fromISO(exifData["DateTimeOriginal"]?.description ?? "1970").toJSDate();
+    const parsedDate = exifData["DateTime"]
+      ? parse(
+          exifData["DateTime"]?.description ?? "1970:01:01 00:00:00",
+          "YYYY:MM:DD HH:mm:ss",
+        )
+      : DateTime.fromISO(
+          exifData["DateTimeOriginal"]?.description ?? "1970",
+        ).toJSDate();
     const date = format(parsedDate, "DD MMM YYYY HH:mm");
     return {
       name: image.name,
       date,
       width: exifData["Image Width"]?.value,
       height: exifData["Image Height"]?.value,
-      lens: exifData["LensModel"]?.description ?? "Unknown camera"
+      lens: exifData["LensModel"]?.description ?? "Unknown camera",
     };
   });
 };

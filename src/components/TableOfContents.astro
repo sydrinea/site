@@ -1,0 +1,63 @@
+---
+interface Props {
+    headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+
+// Filter to only show h2 and h3 headings for a cleaner TOC
+const tocHeadings = headings.filter((h) => h.depth <= 3);
+---
+
+{
+    tocHeadings.length > 0 && (
+        <nav
+            class="sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto p-6"
+            aria-label="Table of Contents"
+        >
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-subtext0 mb-4">
+                On this page
+            </h2>
+            <ul class="flex flex-col gap-2 list-none p-0 m-0">
+                {tocHeadings.map((heading) => (
+                    <li
+                        class:list={[
+                            "m-0",
+                            {
+                                "ml-4": heading.depth === 2,
+                                "ml-8": heading.depth === 3,
+                            },
+                        ]}
+                    >
+                        <a
+                            href={`#${heading.slug}`}
+                            class="block ignored-link text-sm text-subtext1 transition-all duration-200 py-1 border-l-2 border-transparent pl-3 -ml-3 hover:text-text hover:border-lavender"
+                        >
+                            {heading.text}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    )
+}
+
+<style>
+    /* Custom scrollbar styling */
+    nav::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    nav::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    nav::-webkit-scrollbar-thumb {
+        background: rgb(var(--ctp-surface2));
+        border-radius: 2px;
+    }
+
+    nav::-webkit-scrollbar-thumb:hover {
+        background: rgb(var(--ctp-overlay0));
+    }
+</style>

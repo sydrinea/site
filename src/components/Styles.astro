@@ -1,4 +1,10 @@
 <style is:global>
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   a:not(.ignored-link) {
     @apply relative text-lavender hover:text-mauve underline;
   }
@@ -22,6 +28,15 @@
   article a[href*="//"]:not(.ignored-link)::after
   {
     @apply lg:mt-2;
+  }
+
+  article h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply scroll-pt-10 !important;
   }
 
   footer a[href*="//"]:not(.ignored-link)::after

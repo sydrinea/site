@@ -4,10 +4,12 @@ import { Icon } from "astro-icon/components";
 const { title, description, repo, post, homepage } = Astro.props;
 ---
 
-<li class="rounded-lg border-2 p-3 border-mantle">
-  <h2 class="font-bold font-serif">{title}</h2>
-  <p class="text-subtext1">{description}</p>
-  <ul class="mt-2 flex flex-row flex-wrap">
+<li
+  class="flex flex-col h-full p-5 rounded-xl transition-all duration-300 ease-out border bg-base border-surface0"
+>
+  <h2 class="text-xl font-serif font-bold mb-2 text-text">{title}</h2>
+  <p class="text-subtext0 leading-relaxed mb-4">{description}</p>
+  <ul class="mt-auto flex flex-row flex-wrap gap-2">
     {
       homepage && (
         <li>

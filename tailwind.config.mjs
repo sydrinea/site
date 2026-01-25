@@ -23,7 +23,8 @@ export default {
               textDecoration: "none",
             },
             'h1,h2,h3,h4,h5,h6': {
-              fontFamily: 'Lora, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif'
+              fontFamily: 'Lora, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+              'scroll-margin-top': '8rem',
             },
             "--tw-prose-body": theme("colors.text.DEFAULT"),
             "--tw-prose-headings": theme(`colors.${accent}.DEFAULT`),

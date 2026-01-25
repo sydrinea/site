@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav
+  class="inline-flex items-center gap-2 border-l-2 border-surface0 pl-3 text-md flex-wrap py-1"
+  aria-label="Breadcrumb"
+>
+  {
+    items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <>
+          {index > 0 && (
+            <Icon
+              name="carbon:chevron-right"
+              class="h-3.5 w-3.5 text-overlay0"
+            />
+          )}
+          {isLast ? (
+            <span class="font-bold text-subtext1" aria-current="page">
+              {item.label}
+            </span>
+          ) : (
+            <a
+              href={item.href}
+              class="ignored-link text-lavender underline transition-colors duration-200 hover:text-mauve"
+            >
+              {item.label}
+            </a>
+          )}
+        </>
+      );
+    })
+  }
+</nav>

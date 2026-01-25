@@ -7,7 +7,10 @@ import Webring from "./Webring.astro";
   <Webring />
   <ul class="list-none text-center -space-y-1">
     <li>
-      <p class="text-xs text-subtext0">Copyright © 2025 {fullName}</p>
+      <p class="text-xs text-subtext0">
+        Copyright © {new Date().getFullYear()}
+        {fullName}
+      </p>
     </li>
     <li class="pt-0.5">
       <a class="inline text-xs" href="/acknowledgments"> Acknowledgments </a>

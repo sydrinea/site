@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Base from "../layouts/Base.astro";
 import titleCase from "../titleCase";
+import Breadcrumbs from "./Breadcrumbs.astro";
 
 interface Props {
   title: string;
@@ -14,23 +15,26 @@ const { title, description, items, slug } = Astro.props;
 ---
 
 <Base pageTitle={title} description={description}>
-  <div>
-    <p class="text-subtext1">
-      <a href="/collections">Collections</a>
-      <Icon name="carbon:chevron-right" class="inline m-1 text-overlay0" />
-      {titleCase(slug)}
-      <a href={`/in/${title.toLowerCase()}.xml`}>
-        <Icon
-          name="mdi:rss"
-          class="text-peach inline mb-[1.1px] hover:text-maroon ml-1"
-        />
-      </a>
-    </p>
+  <div class="flex items-center gap-2">
+    <Breadcrumbs
+      items={[
+        { label: "Collections", href: "/collections" },
+        { label: titleCase(slug) },
+      ]}
+    />
+    <a
+      href={`/in/${slug}.xml`}
+      class="flex h-8 w-8 items-center justify-center rounded-full transition-colors hover:bg-crust text-peach hover:text-maroon ignored-link"
+      aria-label="RSS Feed"
+    >
+      <Icon name="mdi:rss" class="h-5 w-5" />
+    </a>
   </div>
   <h1 class="text-3xl font-bold mb-2 flex flex-row flex-wrap gap-2"></h1>
   <p class="mb-5">
     {description}
   </p>
+
   {items.length === 0 && <p>Nothing here yet.</p>}
   <slot />
 </Base>
