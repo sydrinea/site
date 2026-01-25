@@ -14,15 +14,7 @@ export default function MobileTableOfContents({ headings }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
-  // Filter to only show h2 and h3 headings
   const tocHeadings = headings.filter((h) => h.depth <= 3);
-
-  const handleLinkClick = () => {
-    // Close after a brief moment to let the scroll happen
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 100);
-  };
 
   return (
     <nav
@@ -73,7 +65,7 @@ export default function MobileTableOfContents({ headings }: Props) {
               <a
                 href={`#${heading.slug}`}
                 className="ignored-link block text-sm transition-all duration-200 py-1 border-l-2 border-transparent pl-3 -ml-3 text-subtext1 hover:border-lavender hover:text-text"
-                onClick={handleLinkClick}
+                onClick={() => setIsOpen(false)}
               >
                 {heading.text}
               </a>
