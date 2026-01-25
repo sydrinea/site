@@ -32,10 +32,10 @@ const editLink = `${socials.github}/site/edit/main/src/content/nodes/${pathname}
           { label: frontmatter.title },
         ]}
       />
-      <h2 class="text-lg lg:text-xl font-medium text-subtext1">
+      <h2 class="text-lg lg:text-xl font-medium text-ctp-subtext1">
         {frontmatter.description}
       </h2>
-      <p class="font-light text-subtext0">
+      <p class="font-light text-ctp-subtext0">
         {format(new Date(frontmatter.pubDate), "DD MMM YYYY")}
         —
         {frontmatter.minutesRead}
@@ -47,7 +47,7 @@ const editLink = `${socials.github}/site/edit/main/src/content/nodes/${pathname}
     </article>
     <TagArray tags={frontmatter.tags} />
     <a
-      class="ignored-link text-xs text-subtext0 hover:text-subtext1 underline"
+      class="ignored-link text-xs text-ctp-subtext0 hover:text-ctp-subtext1 underline"
       href={editLink}
       >✎ Edit on GitHub
     </a>
@@ -59,13 +59,3 @@ const editLink = `${socials.github}/site/edit/main/src/content/nodes/${pathname}
     </aside>
   </div>
 </Base>
-
-<style>
-  .tag-foot {
-    @apply text-text no-underline hover:text-text;
-  }
-
-  .sr-only {
-    @apply hidden;
-  }
-</style>

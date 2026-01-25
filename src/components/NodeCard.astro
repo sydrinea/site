@@ -17,13 +17,13 @@ const { title, description, date, url, featured } = Astro.props;
     "flex flex-col h-full p-5 rounded-xl transition-all duration-300 ease-out border",
     "hover:-translate-y-1 hover:shadow-lg",
     "ignored-link",
-    "bg-base border-surface0 hover:border-overlay0 hover:bg-surface0/30",
+    "bg-ctp-base border-ctp-surface0 hover:border-ctp-overlay0 hover:bg-ctp-surface0/30",
   )}
 >
   {
     featured && (
       <div class="flex items-start justify-between mb-3">
-        <span class="px-2 py-0.5 text-xs font-medium text-mauve bg-mauve/10 rounded-full">
+        <span class="px-2 py-0.5 text-xs font-medium text-ctp-mauve bg-ctp-mauve/10 rounded-full">
           Featured
         </span>
       </div>
@@ -31,18 +31,21 @@ const { title, description, date, url, featured } = Astro.props;
   }
 
   <h2
-    class="text-xl font-serif font-bold mb-2 group-hover:text-mauve transition-colors"
+    class="text-xl font-serif font-bold mb-2 group-hover:text-ctp-mauve transition-colors"
   >
     {title}
   </h2>
 
-  <p class="text-subtext0 leading-relaxed line-clamp-3">
+  <p class="text-ctp-subtext0 leading-relaxed line-clamp-3">
     {description}
   </p>
 
   {
     date && (
-      <time datetime={date.toISOString()} class="text-sm text-subtext0 mt-4">
+      <time
+        datetime={date.toISOString()}
+        class="text-sm text-ctp-subtext0 mt-4"
+      >
         {date.toLocaleDateString("en-US", {
           year: "numeric",
           month: "short",

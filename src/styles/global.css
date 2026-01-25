@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-ibm-plex-sans);
+  --font-serif: var(--font-lora);
+  --font-mono: var(--font-recursive);
+}
+
+@plugin "@tailwindcss/typography";
+
+@import "@catppuccin/tailwindcss/mocha.css";
+
+.webring-link {
+  @apply text-ctp-lavender rounded-md border-2 border-ctp-mantle hover:border-ctp-lavender;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+a:not(.ignored-link) {
+  @apply relative text-ctp-lavender hover:text-ctp-mauve underline;
+}
+
+a[href*="//"]:not(.ignored-link) {
+  @apply pr-5 underline;
+}
+
+a[href*="//"]:not(.ignored-link)::after {
+  /* Credit: https://github.com/uncenter/uncenter.dev/blob/main/src/assets/styles.scss#L138 */
+  content: "";
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='external-link-icon' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z'/%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z'/%3E%3C/svg%3E");
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  @apply bg-current inline-block h-3 w-3 ml-1 -mr-5;
+}
+
+article a[href*="//"]:not(.ignored-link)::after {
+  @apply lg:mt-2;
+}
+
+article :is(h1, h2, h3, h4, h5, h6) {
+  @apply font-serif;
+  scroll-margin-top: 8rem !important;
+}
+
+footer a[href*="//"]:not(.ignored-link)::after {
+  @apply mt-[5px];
+}
+
+pre {
+  @apply text-wrap;
+}
+
+article img {
+  @apply border-8 border-ctp-mantle rounded-lg mx-auto;
+}
+
+.footnotes {
+  @apply border-t-2 border-ctp-lavender;
+}
+
+.astro-code {
+  @apply border-2 border-ctp-mantle rounded-xl;
+}
+
+@media (prefers-color-scheme: dark) {
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+@media (hover: none) {
+  #nav-pill {
+    display: none;
+  }
+}
+
+/* Custom scrollbar styling */
+nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+nav::-webkit-scrollbar-thumb {
+  background: rgb(var(--ctp-surface2));
+  border-radius: 2px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--ctp-overlay0));
+}
+
+.tag-foot {
+  @apply text-ctp-text no-underline hover:text-ctp-text;
+}
+
+.sr-only {
+  @apply hidden;
+}
+
+.prose {
+  /* Base Colors */
+  --tw-prose-body: var(--color-text-default);
+  --tw-prose-headings: var(--color-ctp-lavender);
+  --tw-prose-lead: var(--color-text-default);
+  --tw-prose-links: var(--color-ctp-lavender);
+  --tw-prose-bold: var(--color-ctp-lavender);
+  --tw-prose-counters: var(--color-ctp-lavender);
+  --tw-prose-bullets: var(--color-ctp-lavender);
+  --tw-prose-hr: var(--color-ctp-lavender);
+  --tw-prose-quotes: var(--color-ctp-lavender);
+  --tw-prose-quote-borders: var(--color-ctp-lavender);
+  --tw-prose-captions: var(--color-ctp-lavender);
+  --tw-prose-code: var(--color-ctp-lavender);
+  --tw-prose-pre-code: var(--color-ctp-lavender);
+  --tw-prose-pre-bg: var(--color-base-default);
+  --tw-prose-th-borders: var(--color-ctp-lavender);
+  --tw-prose-td-borders: var(--color-ctp-lavender);
+
+  /* Inverted (Dark Mode) Colors */
+  --tw-prose-invert-body: var(--color-ctp-lavender);
+  --tw-prose-invert-headings: #ffffff;
+  --tw-prose-invert-lead: var(--color-ctp-lavender);
+  --tw-prose-invert-links: #ffffff;
+  --tw-prose-invert-bold: #ffffff;
+  --tw-prose-invert-counters: var(--color-ctp-lavender);
+  --tw-prose-invert-bullets: var(--color-ctp-lavender);
+  --tw-prose-invert-hr: var(--color-ctp-lavender);
+  --tw-prose-invert-quotes: var(--color-ctp-lavender);
+  --tw-prose-invert-quote-borders: var(--color-ctp-lavender);
+  --tw-prose-invert-captions: var(--color-ctp-lavender);
+  --tw-prose-invert-code: #ffffff;
+  --tw-prose-invert-pre-code: var(--color-ctp-lavender);
+}

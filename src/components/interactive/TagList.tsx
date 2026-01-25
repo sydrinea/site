@@ -16,7 +16,7 @@ export default function TagList({ tagNames }: TagListProps) {
         tagNames.map((tag) => ({ tag })),
         {
           keys: ["tag"],
-        }
+        },
       );
       const results = fuse.search(query);
       setFiltered(results.map((result) => result.item.tag));
@@ -30,7 +30,7 @@ export default function TagList({ tagNames }: TagListProps) {
       <input
         name="tag-filter"
         placeholder="Filter..."
-        className="rounded-lg p-3 bg-mantle placeholder:text-subtext0 text-subtext0"
+        className="rounded-lg p-3 bg-ctp-mantle placeholder:text-ctp-subtext0 text-ctp-subtext0"
         onChange={(e) => setQuery(e.target.value)}
       />
       <div />
@@ -42,7 +42,7 @@ export default function TagList({ tagNames }: TagListProps) {
             <li key={tag}>
               <span>
                 <a
-                  className="ignored-link bg-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-crust transition-all"
+                  className="ignored-link bg-ctp-mantle p-2 mr-2 mx-auto rounded-lg hover:bg-ctp-crust transition-all"
                   href={`/tags/${tag}`}
                 >
                   #{tag}

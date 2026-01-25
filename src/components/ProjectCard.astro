@@ -5,10 +5,10 @@ const { title, description, repo, post, homepage } = Astro.props;
 ---
 
 <li
-  class="flex flex-col h-full p-5 rounded-xl transition-all duration-300 ease-out border bg-base border-surface0"
+  class="flex flex-col h-full p-5 rounded-xl transition-all duration-300 ease-out border bg-ctp-base border-ctp-surface0"
 >
-  <h2 class="text-xl font-serif font-bold mb-2 text-text">{title}</h2>
-  <p class="text-subtext0 leading-relaxed mb-4">{description}</p>
+  <h2 class="text-xl font-serif font-bold mb-2 text-ctp-text">{title}</h2>
+  <p class="text-ctp-subtext0 leading-relaxed mb-4">{description}</p>
   <ul class="mt-auto flex flex-row flex-wrap gap-2">
     {
       homepage && (
@@ -16,7 +16,7 @@ const { title, description, repo, post, homepage } = Astro.props;
           <a class="ignored-link" href={homepage} rel="noopener noreferrer">
             <Icon
               name="mdi:web"
-              class="mr-2 text-4xl p-1 border-2 rounded-full border-mantle hover:border-lavender"
+              class="mr-2 text-4xl p-1 border-2 rounded-full border-ctp-mantle hover:border-ctp-lavender"
             />
           </a>
         </li>
@@ -28,7 +28,7 @@ const { title, description, repo, post, homepage } = Astro.props;
           <a class="ignored-link" href={post} rel="noopener noreferrer">
             <Icon
               name="mdi:journal"
-              class="mr-2 text-4xl p-1 border-2 rounded-full border-mantle hover:border-lavender"
+              class="mr-2 text-4xl p-1 border-2 rounded-full border-ctp-mantle hover:border-ctp-lavender"
             />
           </a>
         </li>
@@ -40,7 +40,7 @@ const { title, description, repo, post, homepage } = Astro.props;
           <a class="ignored-link" href={repo} rel="noopener noreferrer">
             <Icon
               name="carbon:logo-github"
-              class="mr-2 text-4xl p-1 border-2 rounded-full border-mantle hover:border-lavender"
+              class="mr-2 text-4xl p-1 border-2 rounded-full border-ctp-mantle hover:border-ctp-lavender"
             />
           </a>
         </li>

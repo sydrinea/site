@@ -4,15 +4,15 @@ import { Icon } from "astro-icon/components";
 
 <header class="sticky top-4 z-50 mb-10 flex justify-center px-5">
   <nav
-    class="relative flex items-center gap-2 rounded-full border border-white/10 bg-mantle/50 p-2 backdrop-blur-md"
+    class="relative flex items-center gap-2 rounded-full border border-white/10 bg-ctp-mantle/50 p-2 backdrop-blur-md"
   >
     <div
       id="nav-pill"
-      class="absolute left-0 top-0 -z-10 h-0 w-0 rounded-full bg-surface1/30 opacity-0 transition-all duration-300 ease-out"
+      class="absolute left-0 top-0 -z-10 h-0 w-0 rounded-full bg-ctp-surface1/30 opacity-0 transition-all duration-300 ease-out"
     >
     </div>
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 transition-colors hover:text-text"
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
       href="/"
       aria-label="Home"
     >
@@ -20,7 +20,7 @@ import { Icon } from "astro-icon/components";
       <span class="hidden sm:block">home</span>
     </a>
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 transition-colors hover:text-text"
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
       href="/in/blog"
       aria-label="Blog"
     >
@@ -28,7 +28,7 @@ import { Icon } from "astro-icon/components";
       <span class="hidden sm:block">blog</span>
     </a>
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 transition-colors hover:text-text"
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
       href="/projects"
       aria-label="Projects"
     >
@@ -36,7 +36,7 @@ import { Icon } from "astro-icon/components";
       <span class="hidden sm:block">projects</span>
     </a>
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-subtext1 transition-colors hover:text-text"
+      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
       href="/gallery"
       aria-label="Gallery"
     >
@@ -45,14 +45,6 @@ import { Icon } from "astro-icon/components";
     </a>
   </nav>
 </header>
-
-<style>
-  @media (hover: none) {
-    #nav-pill {
-      display: none;
-    }
-  }
-</style>
 
 <script is:inline data-astro-rerun>
   {

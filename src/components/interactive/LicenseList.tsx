@@ -22,7 +22,7 @@ export default function LicenseList({ licenses }: LicenseProps) {
         {licenses.map(({ name, text }) => (
           <Disclosure key={name} as="div" id={name}>
             {({ open }) => (
-              <li className="bg-mantle rounded-md p-3">
+              <li className="bg-ctp-mantle rounded-md p-3">
                 <DisclosureButton className="flex flex-wrap items-center gap-2">
                   <ChevronDownIcon
                     width={20}
@@ -37,10 +37,10 @@ export default function LicenseList({ licenses }: LicenseProps) {
                 </DisclosureButton>
                 <DisclosurePanel
                   transition
-                  className="origin-top transition duration-75 ease-in-out data-[closed]:-translate-y-6 data-[closed]:opacity-0"
+                  className="origin-top transition duration-75 ease-in-out data-closed:-translate-y-6 data-closed:opacity-0"
                 >
                   <p
-                    className="border-mantle m-3"
+                    className="border-ctp-mantle m-3"
                     dangerouslySetInnerHTML={{ __html: text }}
                   />
                 </DisclosurePanel>

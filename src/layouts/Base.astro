@@ -7,10 +7,9 @@ import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Styles from "../components/Styles.astro";
 import mdToHtml from "../mdToHtml";
+import "../styles/global.css";
 import clsx from "clsx";
-import "@fontsource/recursive";
-import "@fontsource/lora";
-import "@fontsource/ibm-plex-sans";
+import { Font } from "astro:assets";
 
 interface Props {
   pageTitle: string;
@@ -36,6 +35,9 @@ const { pageTitle, description, image } = Astro.props;
       href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
       rel="stylesheet"
     />
+    <Font cssVariable="--font-lora" preload />
+    <Font cssVariable="--font-ibm-plex-sans" preload />
+    <Font cssVariable="--font-recursive" preload />
     <script
       defer
       is:inline
@@ -54,12 +56,12 @@ const { pageTitle, description, image } = Astro.props;
     />
     <ClientRouter transition:animate="fade" />
   </head>
-  <body class="latte dark:mocha bg-base text-text">
+  <body class="latte dark:mocha bg-ctp-base text-ctp-text">
     {
       banner.text && (
         <div
           class={clsx(
-            "border-2 rounded-lg m-2 p-1 bg-mantle text-center",
+            "border-2 rounded-lg m-2 p-1 bg-ctp-mantle text-center",
             banner.border,
           )}
           set:html={mdToHtml(banner.text)}
@@ -67,7 +69,7 @@ const { pageTitle, description, image } = Astro.props;
       )
     }
     <Navigation />
-    <main class="max-w-screen-md mx-auto px-6">
+    <main class="max-w-3xl mx-auto px-6">
       <slot />
     </main>
     <Footer />

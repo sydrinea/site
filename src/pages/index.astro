@@ -23,8 +23,10 @@ const mostRecentPost = blogPosts[0];
   <div class="flex flex-col gap-6">
     <section>
       <div class="flex flex-col gap-4">
-        <h2 class="text-2xl font-bold font-serif text-text">Sydney Newmark</h2>
-        <div class="prose max-w-none text-text">
+        <h2 class="text-2xl font-bold font-serif text-ctp-text">
+          Sydney Newmark
+        </h2>
+        <div class="prose max-w-none text-ctp-text">
           <ShortBio />
         </div>
         <div class="flex flex-row gap-x-3 mt-2">
@@ -49,7 +51,7 @@ const mostRecentPost = blogPosts[0];
     {
       mostRecentPost && (
         <section>
-          <h3 class="text-xl font-bold font-serif text-text mb-4">
+          <h3 class="text-xl font-bold font-serif text-ctp-text mb-4">
             Latest Post
           </h3>
           <NodeCard
