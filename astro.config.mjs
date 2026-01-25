@@ -55,8 +55,8 @@ export default defineConfig({
       },
       {
         provider: fontProviders.google(),
-        name: "Recursive",
-        cssVariable: "--font-recursive",
+        name: "Fira Code",
+        cssVariable: "--font-fira-code",
       },
     ],
   },

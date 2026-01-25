@@ -3,7 +3,7 @@
 @theme inline {
   --font-sans: var(--font-ibm-plex-sans);
   --font-serif: var(--font-lora);
-  --font-mono: var(--font-recursive);
+  --font-mono: var(--font-fira-code);
 }
 
 @plugin "@tailwindcss/typography";
