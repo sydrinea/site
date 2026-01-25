@@ -13,28 +13,19 @@ interface Props {
 }
 
 const { images } = Astro.props;
-
-// Sort by date (newest first)
-const sorted = images.sort((a, b) =>
-  new Date(a.date) < new Date(b.date) ? 1 : -1,
-);
-
-// Add sortIndex to each image
-const withIndex = sorted.map((img, i) => ({ ...img, sortIndex: i }));
 ---
 
-<div
-  class="columns-[120px] sm:columns-[140px] md:columns-[160px] gap-2"
-  id="gallery"
->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4">
   {
-    withIndex.map((img) => (
-      <GalleryItem
-        id={img.sortIndex}
-        name={img.name}
-        width={img.width}
-        height={img.height}
-      />
-    ))
+    images
+      .sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1))
+      .map((img, key) => (
+        <GalleryItem
+          id={key}
+          name={img.name}
+          width={img.width}
+          height={img.height}
+        />
+      ))
   }
 </div>
