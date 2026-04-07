@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    post: CollectionEntry<"nodes">;
+}
+
+const { post } = Astro.props;
+
+const postDate = new Date(post.data.pubDate).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+});
+---
+
+<section
+    class="border-b border-ctp-surface0 animate-[fadeUp_1s_0.6s_ease_both]"
+>
+    <div
+        class="flex items-center gap-3 border-b border-ctp-surface0 px-10 py-3 sm:hidden"
+    >
+        <span class="font-mono text-xs text-ctp-subtext0">latest post</span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-[1fr_2fr]">
+        <!-- wide: vertical label in side column -->
+        <div
+            class="hidden sm:flex items-center justify-center border-r border-ctp-surface0 p-16"
+        >
+            <span
+                class="font-mono text-xs text-ctp-subtext0 [writing-mode:vertical-lr] rotate-180"
+            >
+                latest post
+            </span>
+        </div>
+
+        <a
+            class="ignored-link post-card relative grid gap-6 p-10 sm:p-16 no-underline text-inherit transition-colors duration-300 hover:bg-ctp-lavender/10"
+            href={`/node/${post.slug}`}
+        >
+            <span
+                class="absolute top-8 right-10 sm:top-12 sm:right-16 font-mono text-xs text-ctp-surface2"
+                >02</span
+            >
+            <span class="font-mono text-xs uppercase text-ctp-lavender">
+                {postDate}
+            </span>
+            <h2 class="font-serif text-4xl font-light text-ctp-text">
+                {post.data.title}
+            </h2>
+            <p
+                class="font-sans text-base text-ctp-subtext0 leading-relaxed max-w-prose"
+            >
+                {post.data.description}
+            </p>
+        </a>
+    </div>
+</section>

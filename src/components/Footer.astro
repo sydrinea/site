@@ -3,20 +3,42 @@ import { fullName } from "../../data/config.json";
 import Webring from "./Webring.astro";
 ---
 
-<footer class="grid place-items-center mt-10 space-y-3 mb-20">
+<footer class="grid place-items-center mt-10 mb-20 gap-3">
   <Webring />
-  <ul class="list-none text-center -space-y-1">
+
+  <ul class="list-none text-center">
     <li>
-      <p class="text-xs text-ctp-subtext0">
-        Copyright © {new Date().getFullYear()}
+      <p class="font-sans text-xs text-ctp-surface2">
+        © {new Date().getFullYear()}
         {fullName}
       </p>
     </li>
-    <li class="pt-0.5">
-      <a class="inline text-xs" href="/acknowledgments"> Acknowledgments </a>
+    <li class="pt-1">
+      <a class="footer-link ignored-link" href="/acknowledgments"
+        >Acknowledgments</a
+      >
     </li>
     <li>
-      <a class="inline text-xs" href="/analytics">Analytics</a>
+      <a class="footer-link ignored-link" href="/analytics">Analytics</a>
     </li>
   </ul>
 </footer>
+
+<style>
+  @reference "../styles/global.css";
+
+  .footer-link {
+    @apply font-sans text-xs text-ctp-surface2 no-underline transition-colors duration-200 hover:text-ctp-surface2;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition:
+      background-size 0.3s ease,
+      color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    background-size: 100% 1px;
+  }
+</style>

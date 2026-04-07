@@ -15,12 +15,13 @@ interface Props {
   pageTitle: string;
   description: string;
   image?: string;
+  fullWidth?: boolean;
 }
 
-const { pageTitle, description, image } = Astro.props;
+const { pageTitle, description, image, fullWidth } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
@@ -56,23 +57,26 @@ const { pageTitle, description, image } = Astro.props;
     />
     <ClientRouter transition:animate="fade" />
   </head>
-  <body class="bg-ctp-base text-ctp-text">
-    {
-      banner.text && (
-        <div
-          class={clsx(
-            "border-2 rounded-lg m-2 p-1 bg-ctp-mantle text-center",
-            banner.border,
-          )}
-          set:html={mdToHtml(banner.text)}
-        />
-      )
-    }
-    <Navigation />
-    <main class="max-w-3xl mx-auto px-6">
-      <slot />
-    </main>
-    <Footer />
-    <Styles />
+
+  <body class="h-full overflow-hidden bg-ctp-base text-ctp-text">
+    <div class="h-full overflow-y-auto overscroll-none">
+      {
+        banner.text && (
+          <div
+            class={clsx(
+              "border-2 rounded-lg m-2 p-1 bg-ctp-mantle text-center",
+              banner.border,
+            )}
+            set:html={mdToHtml(banner.text)}
+          />
+        )
+      }
+      <Navigation />
+      <main class={fullWidth ? "w-full" : "max-w-3xl mx-auto px-6"}>
+        <slot />
+      </main>
+      <Footer />
+      <Styles />
+    </div>
   </body>
 </html>

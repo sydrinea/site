@@ -1,10 +1,18 @@
 ---
 import { getCollection } from "astro:content";
 import { Content as ShortBio } from "../content/misc/short-bio.mdx";
-import { socials } from "../../data/config.json";
-import Social from "../components/Social.astro";
-import NodeCard from "../components/NodeCard.astro";
 import Base from "../layouts/Base.astro";
+import Social from "../components/Social.astro";
+import IndexCard from "../components/IndexCard.astro";
+import InterestTag from "../components/InterestTag.astro";
+import config from "../../data/config.json";
+
+const interests = [
+  "systems design",
+  "distributed computing",
+  "numerical analysis",
+  "programming languages",
+];
 
 const nodes = await getCollection("nodes");
 const blogPosts = nodes
@@ -19,49 +27,73 @@ const mostRecentPost = blogPosts[0];
 <Base
   pageTitle="Sydney Newmark"
   description="My personal corner of the internet, where I write about my projects and experiences in tech and elsewhere."
+  fullWidth
 >
-  <div class="flex flex-col gap-6">
-    <section>
-      <div class="flex flex-col gap-4">
-        <h2 class="text-2xl font-bold font-serif text-ctp-text">
-          Sydney Newmark
-        </h2>
-        <div class="prose max-w-none text-ctp-text">
-          <ShortBio />
-        </div>
-        <div class="flex flex-row gap-x-3 mt-2">
-          <Social
-            label="Sydney Newmark's GitHub"
-            icon="carbon:logo-github"
-            link={socials.github}
-          />
-          <Social
-            label="Sydney Newmark's Bluesky"
-            icon="fa6-brands:bluesky"
-            link={socials.bluesky}
-          />
-          <Social
-            label="Sydney Newmark's Mastodon"
-            icon="fa6-brands:mastodon"
-            link={socials.mastodon}
-          />
-        </div>
+  <section
+    class="grid grid-cols-1 md:grid-cols-2 min-h-[70vh] border-b border-ctp-surface0 animate-[fadeUp_1s_0.2s_ease_both]"
+  >
+    <div
+      class="flex flex-col gap-8 justify-between border-b border-ctp-surface0 sm:border-b-0 sm:border-r p-10 sm:p-20"
+    >
+      <Social icon="mdi:github" link={config.socials.github} label="GitHub" />
+      <h1 class="font-serif text-6xl font-light text-ctp-text my-auto">
+        Syd<em class="italic text-ctp-lavender">ney</em><br />New<em
+          class="italic text-ctp-lavender">mark</em
+        >
+      </h1>
+    </div>
+
+    <div
+      class="relative flex flex-col justify-center p-10 sm:p-20 animate-[fadeUp_1s_0.4s_ease_both]"
+    >
+      <span
+        class="absolute top-8 right-10 sm:top-12 sm:right-16 font-mono text-xs text-ctp-surface2"
+        >01</span
+      >
+
+      <p
+        class="bio-label font-mono text-sm text-ctp-subtext0 mb-6 flex items-center gap-4"
+      >
+        about
+      </p>
+
+      <div class="bio font-serif text-base leading-relaxed text-ctp-text">
+        <ShortBio />
       </div>
-    </section>
-    {
-      mostRecentPost && (
-        <section>
-          <h3 class="text-xl font-bold font-serif text-ctp-text mb-4">
-            Latest Post
-          </h3>
-          <NodeCard
-            title={mostRecentPost.data.title}
-            description={mostRecentPost.data.description}
-            date={new Date(mostRecentPost.data.pubDate)}
-            url={`/node/${mostRecentPost.slug}`}
-          />
-        </section>
-      )
-    }
-  </div>
+
+      <div class="flex flex-wrap gap-2 mt-6">
+        {interests.map((tag) => <InterestTag tag={tag} />)}
+      </div>
+    </div>
+  </section>
+
+  {mostRecentPost && <IndexCard post={mostRecentPost} />}
 </Base>
+
+<style>
+  @reference "../styles/global.css";
+
+  .bio-label::before {
+    @apply content-[''] block w-8 h-px bg-ctp-lavender shrink-0;
+  }
+
+  .bio :global(a) {
+    @apply text-inherit no-underline border-b border-ctp-lavender transition-colors duration-200 hover:text-ctp-lavender;
+    padding-right: 0 !important;
+  }
+
+  .bio :global(a)::after {
+    display: none !important;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -21,15 +21,23 @@
 }
 
 a:not(.ignored-link) {
-  @apply relative text-ctp-lavender hover:text-ctp-mauve underline;
+  @apply relative text-ctp-lavender no-underline;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.3s ease;
 }
-
+ 
+a:not(.ignored-link):hover {
+  background-size: 100% 1px;
+}
+ 
 a[href*="//"]:not(.ignored-link) {
-  @apply pr-5 underline;
+  @apply pr-5;
 }
-
+ 
 a[href*="//"]:not(.ignored-link)::after {
-  /* Credit: https://github.com/uncenter/uncenter.dev/blob/main/src/assets/styles.scss#L138 */
   content: "";
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='external-link-icon' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z'/%3E%3Cpath fill-rule='evenodd' d='M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z'/%3E%3C/svg%3E");
   mask-position: center;
@@ -78,12 +86,6 @@ article img {
   }
 }
 
-@media (hover: none) {
-  #nav-pill {
-    display: none;
-  }
-}
-
 /* Custom scrollbar styling */
 nav::-webkit-scrollbar {
   width: 4px;
@@ -94,12 +96,35 @@ nav::-webkit-scrollbar-track {
 }
 
 nav::-webkit-scrollbar-thumb {
-  background: rgb(var(--ctp-surface2));
+  background: rgb(var(--color-ctp-surface2));
   border-radius: 2px;
 }
 
 nav::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--ctp-overlay0));
+  background: rgb(var(--color-ctp-overlay0));
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 }
 
 .tag-foot {

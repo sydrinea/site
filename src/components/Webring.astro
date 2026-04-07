@@ -3,26 +3,28 @@ import { webring } from "../../data/config.json";
 import { Icon } from "astro-icon/components";
 ---
 
-<nav class="text-sm flex flex-wrap justify-center space-x-1">
+<nav class="flex items-center gap-1">
   <a
     aria-label="Previous webring site"
-    class="ignored-link webring-link"
+    class="ignored-link inline-flex items-center justify-center rounded-full p-[0.55rem] bg-ctp-mantle border border-ctp-surface0 text-ctp-subtext0 no-underline transition-colors duration-250 hover:text-ctp-lavender hover:bg-ctp-lavender/10 hover:border-ctp-lavender"
     href={`${webring.root}/${webring.slug}/previous`}
   >
-    <Icon name="mdi:keyboard-arrow-left" class="p-1 text-2xl" />
+    <Icon name="mdi:keyboard-arrow-left" class="block w-4 h-4" />
   </a>
+
   <a
     aria-label="Webring site list"
-    class="ignored-link webring-link"
+    class="ignored-link inline-flex items-center justify-center rounded-full p-[0.55rem] bg-ctp-mantle border border-ctp-surface0 text-ctp-subtext0 no-underline transition-colors duration-250 hover:text-ctp-lavender hover:bg-ctp-lavender/10 hover:border-ctp-lavender"
     href={webring.root}
   >
-    <Icon name="mdi:ring" class="p-1 text-2xl" />
+    <Icon name="mdi:ring" class="block w-4 h-4" />
   </a>
+
   <a
     aria-label="Next webring site"
-    class="ignored-link webring-link"
+    class="ignored-link inline-flex items-center justify-center rounded-full p-[0.55rem] bg-ctp-mantle border border-ctp-surface0 text-ctp-subtext0 no-underline transition-colors duration-250 hover:text-ctp-lavender hover:bg-ctp-lavender/10 hover:border-ctp-lavender"
     href={`${webring.root}/${webring.slug}/next`}
   >
-    <Icon name="mdi:keyboard-arrow-right" class="p-1 text-2xl" />
+    <Icon name="mdi:keyboard-arrow-right" class="block w-4 h-4" />
   </a>
 </nav>

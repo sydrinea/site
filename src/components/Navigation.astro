@@ -1,88 +1,38 @@
----
-import { Icon } from "astro-icon/components";
----
+<header
+  class="sticky top-0 z-50 bg-ctp-base isolate grid grid-cols-[1fr_auto] items-end px-16 py-5 max-md:grid-cols-1 max-md:gap-4 max-md:px-8 max-sm:gap-6 mb-5"
+>
+  <span class="font-light text-sm tracking-wide font-mono text-ctp-subtext0">
+    sydneyn.dev
+  </span>
 
-<header class="sticky top-4 z-50 mb-10 flex justify-center px-5">
-  <nav
-    class="relative flex items-center gap-2 rounded-full border border-white/10 bg-ctp-mantle/50 p-2 backdrop-blur-md"
-  >
-    <div
-      id="nav-pill"
-      class="absolute left-0 top-0 -z-10 h-0 w-0 rounded-full bg-ctp-surface1/30 opacity-0 transition-all duration-300 ease-out"
-    >
-    </div>
+  <nav class="flex gap-10 max-sm:gap-6">
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
-      href="/"
-      aria-label="Home"
+      class="nav-link ignored-link font-mono text-sm tracking-wide text-ctp-subtext0 no-underline relative transition-colors duration-300 hover:text-ctp-text"
+      href="/">~/</a
     >
-      <Icon name="mdi:home" class="h-5 w-5 sm:hidden" />
-      <span class="hidden sm:block">home</span>
-    </a>
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
-      href="/in/blog"
-      aria-label="Blog"
+      class="nav-link ignored-link font-mono text-sm tracking-wide text-ctp-subtext0 no-underline relative transition-colors duration-300 hover:text-ctp-text"
+      href="/in/blog">/blog</a
     >
-      <Icon name="mdi:pencil-box-multiple-outline" class="h-5 w-5 sm:hidden" />
-      <span class="hidden sm:block">blog</span>
-    </a>
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
-      href="/projects"
-      aria-label="Projects"
+      class="nav-link ignored-link font-mono text-sm tracking-wide text-ctp-subtext0 no-underline relative transition-colors duration-300 hover:text-ctp-text"
+      href="/projects">/projects</a
     >
-      <Icon name="carbon:tool-box" class="h-5 w-5 sm:hidden" />
-      <span class="hidden sm:block">projects</span>
-    </a>
     <a
-      class="nav-link ignored-link relative z-10 flex items-center gap-2 rounded-full px-4 py-2 text-ctp-subtext1 transition-colors hover:text-ctp-text"
-      href="/gallery"
-      aria-label="Gallery"
+      class="nav-link ignored-link font-mono text-sm tracking-wide text-ctp-subtext0 no-underline relative transition-colors duration-300 hover:text-ctp-text"
+      href="/gallery">/gallery</a
     >
-      <Icon name="carbon:image-copy" class="h-5 w-5 sm:hidden" />
-      <span class="hidden sm:block">gallery</span>
-    </a>
   </nav>
 </header>
 
-<script is:inline data-astro-rerun>
-  {
-    const navLinks = document.querySelectorAll(".nav-link");
-    const navPill = document.getElementById("nav-pill");
-    const nav = document.querySelector("nav");
+<style>
+  @reference "../styles/global.css";
 
-    // Only enable pill animations on devices that support hover
-    if (navPill && nav && window.matchMedia("(hover: hover)").matches) {
-      // Reset pill styles on init: ensure it's hidden initially
-      navPill.style.opacity = "0";
-
-      navLinks.forEach((link) => {
-        link.addEventListener("mouseenter", (e) => {
-          const target = e.currentTarget;
-          const rect = target.getBoundingClientRect();
-          // Ensure parent matches the relative container
-          const parent = target.closest("nav");
-          if (!parent) return;
-
-          const parentRect = parent.getBoundingClientRect();
-
-          // Calculate position relative to container
-          const left = rect.left - parentRect.left;
-          const top = rect.top - parentRect.top;
-
-          requestAnimationFrame(() => {
-            navPill.style.width = `${rect.width}px`;
-            navPill.style.height = `${rect.height}px`;
-            navPill.style.transform = `translate(${left}px, ${top}px)`;
-            navPill.style.opacity = "1";
-          });
-        });
-      });
-
-      nav.addEventListener("mouseleave", () => {
-        navPill.style.opacity = "0";
-      });
-    }
+  .nav-link::after {
+    @apply content-[''] absolute -bottom-0.5 left-0 w-0 h-px bg-ctp-lavender transition-[width] duration-350 ease-in-out;
   }
-</script>
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+</style>

@@ -11,13 +11,11 @@ const { icon, link, label } = Astro.props;
 ---
 
 <a
-  class="ignored-link text-4xl"
+  class="ignored-link inline-flex items-center justify-center w-fit rounded-full p-[0.55rem] bg-ctp-mantle border border-ctp-surface0 text-ctp-subtext0 no-underline transition-colors duration-250 hover:text-ctp-lavender hover:bg-ctp-lavender/10 hover:border-ctp-lavender"
   href={link}
+  target="_blank"
   rel="noopener noreferrer"
   aria-label={label}
 >
-  <Icon
-    name={icon}
-    class="p-1 w-8 h-8 border-2 rounded-md border-ctp-mantle hover:border-ctp-lavender"
-  />
+  <Icon name={icon} class="block w-4 h-4" />
 </a>
