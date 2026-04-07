@@ -8,7 +8,7 @@ import Webring from "./Webring.astro";
 
   <ul class="list-none text-center">
     <li>
-      <p class="font-sans text-xs text-ctp-surface2">
+      <p class="font-sans text-xs text-ctp-overlay1">
         © {new Date().getFullYear()}
         {fullName}
       </p>
@@ -28,7 +28,7 @@ import Webring from "./Webring.astro";
   @reference "../styles/global.css";
 
   .footer-link {
-    @apply font-sans text-xs text-ctp-surface2 no-underline transition-colors duration-200 hover:text-ctp-surface2;
+    @apply font-sans text-xs text-ctp-overlay0 no-underline transition-colors duration-200 hover:text-ctp-overlay1;
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 0% 100%;
     background-repeat: no-repeat;
