@@ -4,7 +4,7 @@ import { domain } from "../../data/config.json";
 const { title, description, type, url, image } = Astro.props;
 const imageUrl = image
   ? image
-  : `https://og.${domain}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+  : `https://og.${domain}?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
 ---
 
 <meta name="title" content={title} />
